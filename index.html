@@ -24,6 +24,13 @@
       <span v-if="seen">Now you see me</span>
       <button v-on:click="magic">Magic</button>
     </div>
+    <div id="list-rendering">
+      <ol>
+        <li v-for="todo in todos">
+          {{ todo.text }}
+        </li>
+      </ol>
+    </div>
   </body>
 
   <script>
@@ -77,9 +84,22 @@
       }
     }
 
+    const ListRendering = {
+      data() {
+        return {
+          todos: [
+            { text: 'Learn JavaScript'},
+            { text: 'Learn Vue'},
+            {text: 'Build Something Awesome'}
+          ]
+        }
+      }
+    }
+
     Vue.createApp(Counter).mount('#counter');
     Vue.createApp(AttributeBinding).mount('#bind-attribute');
     Vue.createApp(EventHandling).mount('#event-handling');
     Vue.createApp(ConditionalRendering).mount('#conditional-rendering');
+    Vue.createApp(ListRendering).mount('#list-rendering');
   </script>
 </html>
