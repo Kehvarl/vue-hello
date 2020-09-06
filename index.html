@@ -24,6 +24,13 @@
       <span v-if="seen">Now you see me</span>
       <button v-on:click="magic">Magic</button>
     </div>
+    <div id="list-rendering">
+      <ol>
+        <li v-for="todo in todos">
+          {{ todo.text }}
+        </li>
+      </ol>
+    </div>
   </body>
 
   <script>
