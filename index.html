@@ -31,6 +31,10 @@
         </li>
       </ol>
     </div>
+    <div id="app">
+      <p>{{ foo }}</p>
+      <button v-on:click="foo = 'baz'">Change It</button>
+    </div>
   </body>
 
   <script>
@@ -95,6 +99,18 @@
         }
       }
     }
+
+    const obj = {
+      foo: 'bar'
+    }
+
+    Object.freeze(obj);
+
+    const vm = Vue.createApp({
+      data() {
+        return obj
+      }
+    }).mount('#app');
 
     Vue.createApp(Counter).mount('#counter');
     Vue.createApp(AttributeBinding).mount('#bind-attribute');
