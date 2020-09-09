@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Vue3 Chat With Yourself</title>
+  </head>
+  <body>
+    <div id="chat">
+      <ul>
+        <li v-for="message in messages">
+          {{ message.text }}
+        </li>
+      </ul>
+      <input type="text" v-model="newMessage">
+      <button v-on:click="postMessage">Post Message</button>
+    </div>
+  </body>
+
+  <script>
+    const Chat = {
+      data() {
+        return {
+          newMessage: '',
+          messages: [
+            {text: 'test 1'},
+            {text: 'test 2'},
+            {text: 'test 3'}
+          ]
+        }
+      },
+      mounted() {
+        setInterval(() => {
+          true;
+        }, 1000)
+      },
+      methods: {
+        postMessage() {
+          this.messages.push({text: this.newMessage});
+          this.newMessage = '';
+        }
+      }
+    };
+
+    Vue.createApp(Chat).mount('#chat');
+  </script>
+</html>
