@@ -7,12 +7,12 @@
   </head>
   <body>
     <div id="chat">
-      <ul>
-        <li v-for="message in messages">
-          {{ message.text }}
-        </li>
-      </ul>
-      <input type="text" v-model="newMessage">
+      <div class="message" v-for="message in messages">
+        <span v-bind:style="{ color: message.color}">
+          <span class="name">{{ message.name }}</span>: <span class="body">{{ message.text }}</span> <span class="time">{{ message.time }}</span>
+        </span>
+      </div>
+      <input id="message_text" v-on:keyup.enter="postMessage" type="text" v-model="newMessage">
       <button v-on:click="postMessage">Post Message</button>
     </div>
   </body>
@@ -22,10 +22,12 @@
       data() {
         return {
           newMessage: '',
+          name: 'Kehavrl',
+          color: '#c0c0c0',
           messages: [
-            {text: 'test 1'},
-            {text: 'test 2'},
-            {text: 'test 3'}
+            {color: '#800000', text: 'test 1'},
+            {color: '#000080', text: 'test 2'},
+            {color: '#008000', text: 'test 3'}
           ]
         }
       },
@@ -36,8 +38,9 @@
       },
       methods: {
         postMessage() {
-          this.messages.push({text: this.newMessage});
+            this.messages.push({name: this.name, color: this.color, text: this.newMessage});
           this.newMessage = '';
+          message_text.focus();
         }
       }
     };
